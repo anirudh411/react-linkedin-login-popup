@@ -4,6 +4,7 @@ import querystring from 'querystring'
 
 import LinkedinLogo from '../linkedin_logo.png'
 import styles from './LinkedinLoginButton.css'
+import {composeUrl} from "../util/composeUrl";
 
 export const errors = {
   POPUP_CLOSED: 'popup closed',
@@ -31,7 +32,8 @@ class LinkedinLoginButton extends React.PureComponent {
     try {
       this.popup.close()
       clearInterval(this.timer)
-    } catch (e) {}
+    } catch (e) {
+    }
   }
 
   /**
@@ -108,8 +110,7 @@ class LinkedinLoginButton extends React.PureComponent {
     if (!Array.isArray(scopes)) {
       throw new Error('You must provide an array on scope props')
     }
-    this.popup = window.open(
-      `https://www.linkedin.com/oauth/v2/authorization?client_id=${clientId}&redirect_uri=${redirectUrl}&response_type=code&state=${this.stateKey}&scope=${scopes.join('+')}`,
+    this.popup = window.open(composeUrl(clientId, scopes, this.stateKey),
       popupConfig.title || 'Login with linkedin',
       `height=${popupConfig.height || 600},width=${popupConfig.width || 500}`,
     )
