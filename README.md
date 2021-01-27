@@ -15,17 +15,13 @@ npm install --save react-linked-login-popup
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'react-linked-login-popup'
+import LinkedIn from 'react-linked-login-popup'
 
 class Example extends Component {
   render () {
     return (
-      <MyComponent />
+      <LinkedIn  />
     )
   }
 }
 ```
-
-## License
-
-MIT © [DOMEY Dimitri](https://github.com/DOMEY Dimitri)
